@@ -1,0 +1,5 @@
+package com.iconmart.product.repository;
+
+public interface CategoryRepository {
+
+}

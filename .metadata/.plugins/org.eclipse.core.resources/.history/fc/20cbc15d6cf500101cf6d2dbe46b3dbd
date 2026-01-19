@@ -1,0 +1,5 @@
+package com.iconmart.product.exception;
+
+public class GlobalExceptionHandler {
+
+}

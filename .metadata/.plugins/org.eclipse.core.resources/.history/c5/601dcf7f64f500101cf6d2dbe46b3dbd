@@ -1,0 +1,5 @@
+package com.iconmart.product.response;
+
+public class ProductResponse {
+
+}

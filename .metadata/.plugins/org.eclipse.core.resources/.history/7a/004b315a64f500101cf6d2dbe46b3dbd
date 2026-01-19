@@ -1,0 +1,14 @@
+package com.iconmart.product.controller;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ProductController {
+	
+	@PostMapping("/products")
+	public void generateProduct(ProductCreateRequest productRequest) {
+		
+	}
+
+}

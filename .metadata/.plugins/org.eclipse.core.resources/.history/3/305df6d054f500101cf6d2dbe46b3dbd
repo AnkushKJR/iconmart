@@ -1,0 +1,5 @@
+package com.iconmart.product.entity;
+
+public class Product {
+
+}

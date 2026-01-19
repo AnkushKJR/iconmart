@@ -1,0 +1,60 @@
+package com.iconmart.product.service;
+
+import org.springframework.stereotype.Service;
+
+import com.iconmart.product.entity.Category;
+import com.iconmart.product.entity.Product;
+import com.iconmart.product.repository.CategoryRepository;
+import com.iconmart.product.repository.ProductRepository;
+import com.iconmart.product.request.ProductCreateRequest;
+import com.iconmart.product.response.ProductResponse;
+
+@Service
+public class ProductService {
+
+	private final ProductRepository productRepository;
+	private final CategoryRepository categoryRepository;
+
+	public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
+		this.productRepository = productRepository;
+		this.categoryRepository = categoryRepository;
+	}
+
+	public ProductResponse createProduct(ProductCreateRequest productRequest) {
+		
+		//related entity must be fetched and attached before persisting
+		Category category =  categoryRepository.findById(productRequest.getCategoryId())
+														 .orElseThrow(() -> new RuntimeException("Category not found!"));
+											
+		
+		Product product = new Product();
+		product.setName(productRequest.getName());
+		product.setDescription(productRequest.getDescription());
+		product.setPrice(productRequest.getPrice());
+		product.setCategory(category);
+		
+		Product persistedProduct = productRepository.save(product);
+		
+		ProductResponse response = new ProductResponse();
+		response.setId(persistedProduct.getId());
+		response.setName(persistedProduct.getName());
+		response.setPrice(persistedProduct.getPrice());
+		response.setCategoryName(persistedProduct.getCategory().getName());
+		
+		return response;		
+
+	}
+	
+	public ProductResponse getElementById(Long id) {
+		Product product = productRepository.findById(id)
+											.orElseThrow(() -> new RuntimeException("No product by the given id!"));
+		ProductResponse response = new ProductResponse();
+		response.setId(product.getId());
+		response.setName(product.getName());
+		response.setPrice(product.getPrice());
+		response.setCategoryName(product.getCategory().getName());
+		
+		return response;
+	}
+
+}

@@ -1,0 +1,18 @@
+package com.iconmart.product.service;
+
+import com.iconmart.product.entity.Product;
+import com.iconmart.product.request.ProductCreateRequest;
+
+public class ProductService {
+	
+	public void createProduct(ProductCreateRequest productRequest) {
+		
+		Product product = new Product();
+		product.setName(productRequest.getName());
+		product.setDescription(productRequest.getDescription());
+		product.setPrice(productRequest.getPrice());
+		product.setCategory(productRequest.getId());
+		
+	}
+
+}

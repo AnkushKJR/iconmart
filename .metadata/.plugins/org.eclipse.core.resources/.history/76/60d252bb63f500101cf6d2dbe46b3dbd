@@ -1,0 +1,31 @@
+package com.iconmart.product.service;
+
+import com.iconmart.product.entity.Category;
+import com.iconmart.product.entity.Product;
+import com.iconmart.product.repository.CategoryRepository;
+import com.iconmart.product.repository.ProductRepository;
+import com.iconmart.product.request.ProductCreateRequest;
+
+public class ProductService {
+
+	private final ProductRepository productRepository;
+	private final CategoryRepository categoryRepository;
+
+	public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
+		this.productRepository = productRepository;
+		this.categoryRepository = categoryRepository;
+	}
+
+	public void createProduct(ProductCreateRequest productRequest) {
+		
+		Category category =  categoryRepository.getReferenceById(productRequest.getCategoryId());
+		
+		Product product = new Product();
+		product.setName(productRequest);
+		product.setDescription(productRequest);
+		product.setPrice(productRequest);
+		product.setCategory(productRequest);
+
+	}
+
+}

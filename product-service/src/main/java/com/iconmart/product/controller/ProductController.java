@@ -1,0 +1,35 @@
+package com.iconmart.product.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.iconmart.product.request.ProductCreateRequest;
+import com.iconmart.product.response.ProductResponse;
+import com.iconmart.product.service.ProductService;
+
+@RestController
+public class ProductController {
+	
+	private final ProductService productService;
+	
+	public ProductController(ProductService productService) {
+		this.productService = productService;
+	}
+	
+	@PostMapping("/products")
+	public ResponseEntity<ProductResponse> generateProduct(@RequestBody ProductCreateRequest productRequest) {
+		ProductResponse response =  productService.createProduct(productRequest);
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping("/products/{id}")
+	public ResponseEntity<ProductResponse> fetchProduct(@PathVariable Long id) {
+		ProductResponse response = productService.getElementById(id);
+		return ResponseEntity.ok(response);
+	}
+
+}

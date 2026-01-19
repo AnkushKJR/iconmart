@@ -1,0 +1,25 @@
+package com.iconmart.product.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "products")
+public class Product {
+
+	@Column(name = "id")
+	private Long id;
+	@Column(name = "name")
+    private String name;
+	@Column(name = "description")
+    private String description;
+	@Column(name = "price")
+    private Double price; // Use Double for potential nulls or precision
+	@Column(name = "category_id")
+    private Long categoryId;
+	@Column(name = "active")
+    private Boolean active; // Use Boolean for true/false/null
+
+	
+}
