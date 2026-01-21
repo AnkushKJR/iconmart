@@ -1,4 +1,4 @@
-package com.iconmart.inventory.request;
+package com.iconmart.data.dto;
 
 public class ProductStockIncreaseRequest {
 	

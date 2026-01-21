@@ -7,7 +7,7 @@ import com.iconmart.inventory.entity.Inventory;
 import com.iconmart.inventory.exception.IllegalNegativeQuantityException;
 import com.iconmart.inventory.repository.InventoryRepository;
 import com.iconmart.inventory.request.ProductInventoryCreateRequest;
-import com.iconmart.inventory.request.ProductStockIncreaseRequest;
+import com.iconmart.data.dto.ProductStockIncreaseRequest;
 import com.iconmart.inventory.request.ProductStockReduceRequest;
 import com.iconmart.inventory.response.ProductAvailableSuccessResponse;
 import com.iconmart.inventory.response.ProductIncreaseSuccessResponse;
@@ -84,14 +84,14 @@ public class InventoryService {
 		inventoryRepository.save(productInInventory);
 
 		ProductReduceSuccessResponse reduceSuccessResponse = new ProductReduceSuccessResponse(
-				"Stock reduction SUCCESSFUL");
+				"success");
 
 		return reduceSuccessResponse;
 
 	}
 
 	@Transactional
-	public ProductIncreaseSuccessResponse increaseStock(ProductStockIncreaseRequest stockIncreaseRequest) {
+	public void increaseStock(ProductStockIncreaseRequest stockIncreaseRequest) {
 
 		if (stockIncreaseRequest.getQuantity() <= 0) {
 			throw new RuntimeException("Requested Quantity should not be less than 0");
@@ -108,9 +108,9 @@ public class InventoryService {
 		// Save is not required for managed entities inside a transaction
 		inventoryRepository.save(productInInventory);
 		
-		ProductIncreaseSuccessResponse increaseSuccessResponse = new ProductIncreaseSuccessResponse("Stock increase SUCCESSFUL");
+//		ProductIncreaseSuccessResponse increaseSuccessResponse = new ProductIncreaseSuccessResponse("success");
 		
-		return increaseSuccessResponse;
+//		return increaseSuccessResponse;
 	}
 
 }

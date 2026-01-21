@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.iconmart.data.dto.ProductStockIncreaseRequest;
 import com.iconmart.inventory.request.ProductInventoryCreateRequest;
-import com.iconmart.inventory.request.ProductStockIncreaseRequest;
+
 import com.iconmart.inventory.request.ProductStockReduceRequest;
 import com.iconmart.inventory.response.ProductAvailableSuccessResponse;
 import com.iconmart.inventory.response.ProductIncreaseSuccessResponse;
@@ -45,9 +46,9 @@ public class InventoryController {
 	}
 	
 	@PutMapping("/inventory/increase")
-	public ResponseEntity<ProductIncreaseSuccessResponse> increaseInventory(@RequestBody ProductStockIncreaseRequest stockIncreaseRequest) {
-		ProductIncreaseSuccessResponse increaseSuccessResponse = inventoryService.increaseStock(stockIncreaseRequest);
-		return ResponseEntity.ok(increaseSuccessResponse);
+	public void increaseInventory(@RequestBody ProductStockIncreaseRequest stockIncreaseRequest) {
+		inventoryService.increaseStock(stockIncreaseRequest);
+//		return ResponseEntity.ok(increaseSuccessResponse);
 	}
 	
 	
