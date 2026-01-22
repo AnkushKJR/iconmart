@@ -2,12 +2,12 @@ package com.iconmart.data.dto;
 
 public class PaymentSuccessEvent {
 	
-	private String paymentId;
+	private Long paymentId;
 	private Long orderId;
 
     public PaymentSuccessEvent() {}
 
-    public PaymentSuccessEvent(Long orderId, String paymentId) {
+    public PaymentSuccessEvent(Long orderId, Long paymentId) {
         this.orderId = orderId;
         this.paymentId = paymentId;
     }
@@ -20,11 +20,11 @@ public class PaymentSuccessEvent {
 		this.orderId = orderId;
 	}
 
-	public String getPaymentId() {
+	public Long getPaymentId() {
 		return paymentId;
 	}
 
-	public void setPaymentId(String paymentId) {
+	public void setPaymentId(Long paymentId) {
 		this.paymentId = paymentId;
 	}
 
