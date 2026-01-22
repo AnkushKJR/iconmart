@@ -44,7 +44,7 @@ public class PaymentService {
 		Payment savedPayment = paymentRepository.save(payment);
 		
 		// ✅ Mock payment decision
-	    boolean success = savedPayment.getAmount().compareTo(BigDecimal.valueOf(5000)) < 0;
+	    boolean success = savedPayment.getAmount().compareTo(BigDecimal.valueOf(5000000)) > 0;
 		
 		
 	    if (success) {
